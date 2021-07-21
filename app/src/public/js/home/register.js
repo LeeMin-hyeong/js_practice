@@ -2,6 +2,7 @@
 
 const id=document.querySelector("#id"),
     name=document.querySelector("#name"),
+    stdNo=document.querySelector("#stdNo"),
     password=document.querySelector("#pw"),
     confirmPassword=document.querySelector("#cfpw"),
     button=document.querySelector("#button");
@@ -17,6 +18,7 @@ function register() {
     const req={
         id: id.value,
         name: name.value,
+        stdNo: stdNo.value,
         password: password.value,
     };
 

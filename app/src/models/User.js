@@ -9,15 +9,23 @@ class User{
 
     async login(){
         const client=this.body;
-        const {id, password}=await UserStorage.getUserInfo(client.id);
-        
-        if(id){
-            if(id===client.id&&password===client.password){
-                return {success: true};
+        try{
+            if(client.id==="")
+                return {success: false, msg: "please enter ID."};
+            else if(client.id==="")
+                return {success: false, msg: "please enter password"};
+
+            const user=await UserStorage.getUserInfo(client.id);
+            if(user){
+                if(user.id===client.id&&user.password===client.password){
+                    return {success: true};
+                }
+                return {success: false, msg: "wrong password."};
             }
-            return {success: false, msg: "wro ng password."};
+            return {success: false, msg: "ID does not exist."};
+        }catch(err){
+            return {success: false, msg: err}
         }
-        return {success: false, msg: "ID does not exist."}
     }
 
     async register(){
